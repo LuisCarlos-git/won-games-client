@@ -1,4 +1,3 @@
-import 'jest-styled-components';
 import { screen } from '@testing-library/react';
 
 import Logo from '.';
