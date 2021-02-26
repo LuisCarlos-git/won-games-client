@@ -51,4 +51,17 @@ describe('<Button />', () => {
     expect(screen.getByText(/by now/i)).toBeInTheDocument();
     expect(screen.getByTestId('icon')).toBeInTheDocument();
   });
+
+  it('should render as a link ', () => {
+    renderWithTheme(
+      <Button as="a" href="/link">
+        by now
+      </Button>
+    );
+
+    expect(screen.getByRole('link', { name: /by now/i })).toHaveAttribute(
+      'href',
+      '/link'
+    );
+  });
 });
