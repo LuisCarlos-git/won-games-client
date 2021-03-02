@@ -14,3 +14,13 @@ export default {
 } as Meta;
 
 export const Default: Story<HighlightProps> = (args) => <Highlight {...args} />;
+
+export const WithFloatImage: Story<HighlightProps> = (args) => (
+  <div style={{ maxWidth: '104rem' }}>
+    <Highlight {...args} />
+  </div>
+);
+
+WithFloatImage.args = {
+  floatImage: '/img/float__image__higlight.png'
+};

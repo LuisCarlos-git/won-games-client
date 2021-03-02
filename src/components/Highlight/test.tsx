@@ -32,4 +32,33 @@ describe('<Highlight />', () => {
       backgroundImage: `url(${props.backgroundImage})`
     });
   });
+
+  it('should render the float image', () => {
+    renderWithTheme(<Highlight {...props} floatImage="/float-image.png" />);
+
+    expect(screen.getByRole('img', { name: props.title })).toHaveAttribute(
+      'src',
+      '/float-image.png'
+    );
+  });
+
+  it('should render align left by prop', () => {
+    renderWithTheme(<Highlight {...props} floatImage="/float-image.png" />);
+
+    expect(screen.getByRole('img', { name: props.title })).toHaveStyleRule(
+      'grid-template-areas',
+      'floatImage content'
+    );
+  });
+
+  it('should render align right by default', () => {
+    renderWithTheme(
+      <Highlight {...props} floatImage="/float-image.png" alignment="left" />
+    );
+
+    expect(screen.getByRole('img', { name: props.title })).toHaveStyleRule(
+      'grid-template-areas',
+      'content floatImage'
+    );
+  });
 });
