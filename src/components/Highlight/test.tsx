@@ -1,6 +1,8 @@
 import { screen } from '@testing-library/react';
 import { renderWithTheme } from 'utils/tests/helper';
 
+import * as S from './styles';
+
 import Highlight from '.';
 
 const props = {
@@ -43,22 +45,46 @@ describe('<Highlight />', () => {
   });
 
   it('should render align left by prop', () => {
-    renderWithTheme(<Highlight {...props} floatImage="/float-image.png" />);
+    const { container } = renderWithTheme(
+      <Highlight {...props} floatImage="/float-image.png" alignment="left" />
+    );
 
-    expect(screen.getByRole('img', { name: props.title })).toHaveStyleRule(
+    expect(container.firstChild).toHaveStyleRule(
       'grid-template-areas',
-      'floatImage content'
+      "'content floatImage'"
+    );
+
+    expect(container.firstChild).toHaveStyleRule('text-align', 'left', {
+      modifier: `${S.Content}`
+    });
+
+    expect(container.firstChild).toHaveStyleRule('justify-self', 'flex-end', {
+      modifier: `${S.FloatImage}`
+    });
+
+    expect(container.firstChild).toHaveStyleRule(
+      'grid-template-columns',
+      '2fr 1.3fr'
     );
   });
 
   it('should render align right by default', () => {
-    renderWithTheme(
-      <Highlight {...props} floatImage="/float-image.png" alignment="left" />
+    const { container } = renderWithTheme(
+      <Highlight {...props} floatImage="/float-image.png" alignment="right" />
     );
 
-    expect(screen.getByRole('img', { name: props.title })).toHaveStyleRule(
+    expect(container.firstChild).toHaveStyleRule(
       'grid-template-areas',
-      'content floatImage'
+      "'floatImage content'"
+    );
+
+    expect(container.firstChild).toHaveStyleRule('text-align', 'right', {
+      modifier: `${S.Content}`
+    });
+
+    expect(container.firstChild).toHaveStyleRule(
+      'grid-template-columns',
+      '1.3fr 2fr'
     );
   });
 });

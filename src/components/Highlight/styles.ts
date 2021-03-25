@@ -7,9 +7,23 @@ type WrapperProps = Pick<HighlightProps, 'backgroundImage' | 'alignment'>;
 const wrapperModifiers = {
   right: () => css`
     grid-template-areas: 'floatImage content';
+    grid-template-columns: 1.3fr 2fr;
+
+    ${Content} {
+      text-align: right;
+    }
   `,
   left: () => css`
     grid-template-areas: 'content floatImage';
+    grid-template-columns: 2fr 1.3fr;
+
+    ${Content} {
+      text-align: left;
+    }
+
+    ${FloatImage} {
+      justify-self: flex-end;
+    }
   `
 };
 
@@ -21,7 +35,6 @@ export const Wrapper = styled.div<WrapperProps>`
     position: relative;
     height: 23rem;
     display: grid;
-    grid-template-columns: 1.3fr 2fr;
 
     ${!!alignment && wrapperModifiers[alignment!]()}
 
@@ -57,13 +70,12 @@ export const Content = styled.div`
   ${({ theme }) => css`
     grid-area: content;
     z-index: ${theme.layers.base};
-    text-align: right;
     padding: ${theme.spacings.xsmall};
+    align-self: flex-end;
 
     ${media.greaterThan('medium')`
       padding: ${theme.spacings.large};
-      align-self: end;
-    `}
+    `};
   `}
 `;
 export const Title = styled.h2`
