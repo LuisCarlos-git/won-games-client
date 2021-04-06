@@ -3,6 +3,7 @@ import { renderWithTheme } from 'utils/tests/helper';
 import { AddShoppingCart } from 'styled-icons/material-outlined';
 
 import Button from '.';
+import theme from 'styles/theme';
 
 describe('<Button />', () => {
   it('should render the medium button size by default', () => {
@@ -52,14 +53,34 @@ describe('<Button />', () => {
     expect(screen.getByTestId('icon')).toBeInTheDocument();
   });
 
+  it('should render an minimal version', () => {
+    renderWithTheme(
+      <Button
+        data-testid="button"
+        minimal
+        icon={<AddShoppingCart data-testid="icon" />}
+      >
+        By now
+      </Button>
+    );
+    expect(screen.getByTestId('button')).toHaveStyle({
+      background: 'none',
+      color: '#F231A5'
+    });
+
+    expect(screen.getByTestId('button')).toHaveStyleRule('background', 'none', {
+      modifier: ':hover'
+    });
+  });
+
   it('should render as a link ', () => {
     renderWithTheme(
       <Button as="a" href="/link">
-        by now
+        buy now
       </Button>
     );
 
-    expect(screen.getByRole('link', { name: /by now/i })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /buy now/i })).toHaveAttribute(
       'href',
       '/link'
     );
