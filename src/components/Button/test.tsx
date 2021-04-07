@@ -3,7 +3,6 @@ import { renderWithTheme } from 'utils/tests/helper';
 import { AddShoppingCart } from 'styled-icons/material-outlined';
 
 import Button from '.';
-import theme from 'styles/theme';
 
 describe('<Button />', () => {
   it('should render the medium button size by default', () => {
