@@ -49,7 +49,7 @@ describe('<Form />', () => {
             <div
               class="c1"
             >
-              my nice
+              my nice 
               <a
                 href="#"
               >

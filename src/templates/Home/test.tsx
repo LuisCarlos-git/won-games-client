@@ -20,37 +20,52 @@ const props = {
   freeHighligth: highlightMock
 };
 
+jest.mock('components/Menu', () => {
+  return {
+    __esModule: true,
+    default: function Mock() {
+      return <div data-testid="menu"></div>;
+    }
+  };
+});
+
+jest.mock('components/Footer', () => {
+  return {
+    __esModule: true,
+    default: function Mock() {
+      return <div data-testid="footer"></div>;
+    }
+  };
+});
+
+jest.mock('components/Showcase', () => {
+  return {
+    __esModule: true,
+    default: function Mock() {
+      return <div data-testid="showcase"></div>;
+    }
+  };
+});
+
+jest.mock('components/BannerSlider', () => {
+  return {
+    __esModule: true,
+    default: function Mock() {
+      return <div data-testid="bannerSlider"></div>;
+    }
+  };
+});
+
 describe('<Home />', () => {
   it('should render menu and footer', () => {
     renderWithTheme(<Home {...props} />);
 
-    // menu
-    expect(screen.getByLabelText(/open menu/i)).toBeInTheDocument();
+    expect(screen.getByTestId('menu')).toBeInTheDocument();
 
-    // footer
-    expect(
-      screen.getByRole('heading', { name: /follow us/i })
-    ).toBeInTheDocument();
+    expect(screen.getByTestId('footer')).toBeInTheDocument();
 
-    // logos (menu/footer)
-    expect(screen.getAllByRole('img', { name: /won games/i })).toHaveLength(2);
+    expect(screen.getAllByTestId('showcase')).toHaveLength(5);
 
-    expect(screen.getByRole('heading', { name: /news/i })).toBeInTheDocument();
-    expect(
-      screen.getByRole('heading', { name: /most popular/i })
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('heading', { name: /upcomming/i })
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole('heading', { name: /free games/i })
-    ).toBeInTheDocument();
-
-    // banner
-    expect(screen.getAllByText(/defy death 1/i)).toHaveLength(1);
-    // card game ( 5 sections com 1 card cada = 5x1 = 5)
-    expect(screen.getAllByText(/population zero/i)).toHaveLength(5);
-    // highlight
-    expect(screen.getAllByText(/read dead is back!/i)).toHaveLength(3);
+    expect(screen.getByTestId('bannerSlider')).toBeInTheDocument();
   });
 });
