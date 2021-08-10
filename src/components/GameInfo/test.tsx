@@ -2,12 +2,7 @@ import { screen } from '@testing-library/react';
 import { renderWithTheme } from 'utils/tests/helper';
 
 import GameInfo from '.';
-
-const props = {
-  price: 'R$ 150,00',
-  title: 'Game title',
-  description: 'Game description'
-};
+import props from './mock';
 
 describe('<GameInfo />', () => {
   it('should render game informations', () => {
