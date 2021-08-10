@@ -1,5 +1,6 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
 import GameDetails, { GameDetailsProps } from '.';
+import props from './mock';
 
 export default {
   title: 'Game/GameDetails',
@@ -9,14 +10,23 @@ export default {
       default: 'dark'
     }
   },
-  args: {
-    platforms: ['windows', 'linux', 'mac']
-  },
+  args: props,
   argTypes: {
     platforms: {
       control: {
         type: 'inline-check',
         options: ['windows', 'linux', 'mac']
+      }
+    },
+    releaseDate: {
+      control: {
+        type: 'date'
+      }
+    },
+    genres: {
+      control: {
+        type: 'inline-check',
+        options: ['Action', 'Role-playing']
       }
     }
   }
