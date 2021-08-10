@@ -7,11 +7,23 @@ import * as S from './styles';
 
 type Platform = 'windows' | 'linux' | 'mac';
 
+type Rating = 'BR0' | 'BR10' | 'BR12' | 'BR14' | 'BR16' | 'BR18';
+
 export type GameDetailsProps = {
   platforms: Platform[];
+  developer: string;
+  releaseDate: string;
+  rating: Rating;
+  genres: string[];
 };
 
-const GameDetails = ({ platforms }: GameDetailsProps) => {
+const GameDetails = ({
+  platforms,
+  developer,
+  releaseDate,
+  rating,
+  genres
+}: GameDetailsProps) => {
   const platformIcons = {
     linux: <Linux title="linux" size={18} />,
     windows: <Windows title="windows" size={18} />,
@@ -29,19 +41,25 @@ const GameDetails = ({ platforms }: GameDetailsProps) => {
       <S.Content>
         <S.Block>
           <S.Label>Developer</S.Label>
-          <S.Description>Gearbox</S.Description>
+          <S.Description>{developer}</S.Description>
         </S.Block>
 
         <S.Block>
           <S.Label>Release date</S.Label>
-          <S.Description>Nov 16, 2019</S.Description>
+          <S.Description>
+            {new Intl.DateTimeFormat('en-US', {
+              day: 'numeric',
+              month: 'short',
+              year: 'numeric'
+            }).format(new Date(releaseDate))}
+          </S.Description>
         </S.Block>
         <S.Block>
           <S.Label>Platform</S.Label>
           <S.IconsWrapper>
-            {platforms.map((icon: Platform) => {
-              <S.Icon key={icon}>{platformIcons[icon]}</S.Icon>;
-            })}
+            {platforms.map((icon: Platform) => (
+              <S.Icon key={icon}>{platformIcons[icon]}</S.Icon>
+            ))}
           </S.IconsWrapper>
         </S.Block>
 
@@ -52,12 +70,14 @@ const GameDetails = ({ platforms }: GameDetailsProps) => {
 
         <S.Block>
           <S.Label>Rating</S.Label>
-          <S.Description>18+</S.Description>
+          <S.Description>
+            {rating === 'BR0' ? 'FREE' : `${rating.replace('BR', '')}+`}
+          </S.Description>
         </S.Block>
 
         <S.Block>
           <S.Label>Genres</S.Label>
-          <S.Description>action</S.Description>
+          <S.Description>{genres.join(' / ')}</S.Description>
         </S.Block>
       </S.Content>
     </S.Wrapper>
