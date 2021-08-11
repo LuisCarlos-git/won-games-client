@@ -6,7 +6,7 @@ export type TextContentProps = {
   content: string;
 };
 
-const TextContents = ({ title = '', content }: TextContentProps) => (
+const TextContent = ({ title = '', content }: TextContentProps) => (
   <S.Wrapper>
     {!!title && (
       <Heading lineLeft lineColor="secondary">
@@ -18,4 +18,4 @@ const TextContents = ({ title = '', content }: TextContentProps) => (
   </S.Wrapper>
 );
 
-export default TextContents;
+export default TextContent;
