@@ -9,7 +9,7 @@ describe('<GameInfo />', () => {
     renderWithTheme(<GameInfo {...props} />);
 
     const heading = screen.getByText(/game title/i);
-    const price = screen.getByText(/R\$ 150,00/i);
+    const price = screen.getByText(/\$150,00/i);
     const description = screen.getByText(/Game description/i);
 
     expect(heading).toBeInTheDocument();

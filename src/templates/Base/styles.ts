@@ -1,6 +1,17 @@
 import styled, { css } from 'styled-components';
 import media from 'styled-media-query';
 
+export const Wrapper = styled.section`
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+`;
+
+export const Content = styled.section`
+  flex: 1 0 auto;
+`;
+
 export const SectionFooter = styled.section`
   ${({ theme }) => css`
     margin-top: ${theme.spacings.large};

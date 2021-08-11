@@ -23,7 +23,7 @@ const GameInfo = ({ description, price, title }: GameInfoProps) => (
       </Heading>
 
       <Ribbon color="secondary" size="normal">
-        {price}
+        {`$${price}`}
       </Ribbon>
     </S.HeadingWrapper>
 
