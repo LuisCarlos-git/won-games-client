@@ -9,7 +9,10 @@ export const Wrapper = styled.section`
 `;
 
 export const Content = styled.section`
-  flex: 1 0 auto;
+  ${({ theme }) => css`
+    margin-top: ${theme.spacings.large};
+    flex: 1 0 auto;
+  `}
 `;
 
 export const SectionFooter = styled.section`

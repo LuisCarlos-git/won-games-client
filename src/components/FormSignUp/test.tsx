@@ -26,10 +26,10 @@ describe('<FormSignIn />', () => {
     ).toBeInTheDocument();
   });
 
-  it('should render sign up text and link', () => {
+  it('should render sign in text and link', () => {
     renderWithTheme(<FormSignUp />);
 
-    expect(screen.getByRole('link', { name: /Sign up/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /sign in/i })).toBeInTheDocument();
     expect(screen.getByText(/Already have an account\?/i)).toBeInTheDocument();
   });
 });

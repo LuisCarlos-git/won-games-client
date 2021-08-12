@@ -76,7 +76,7 @@ const Menu = ({ username }: MenuProps) => {
                 <S.MenuLink>My account</S.MenuLink>
               </Link>
               <Link href="/" passHref>
-                <S.MenuLink>Explore</S.MenuLink>
+                <S.MenuLink>Wishlist</S.MenuLink>
               </Link>
             </>
           )}
