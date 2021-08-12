@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Link from 'next/link';
 import { Menu2 as MenuIcon } from '@styled-icons/remix-fill';
 import { AddShoppingCart as AddShoppingCartIcon } from '@styled-icons/material-outlined';
 import { Search as SearchIcon } from '@styled-icons/material-outlined';
@@ -31,8 +32,12 @@ const Menu = ({ username }: MenuProps) => {
 
       <MediaMatch greaterThan="medium">
         <S.MenuNav>
-          <S.MenuLink href="#">Home</S.MenuLink>
-          <S.MenuLink href="#">Explore</S.MenuLink>
+          <Link href="/" passHref>
+            <S.MenuLink>Home</S.MenuLink>
+          </Link>
+          <Link href="/" passHref>
+            <S.MenuLink>Explore</S.MenuLink>
+          </Link>
         </S.MenuNav>
       </MediaMatch>
 
@@ -46,19 +51,33 @@ const Menu = ({ username }: MenuProps) => {
         </S.IconWrapper>
 
         <MediaMatch greaterThan="medium">
-          {!username && <Button size="medium">Sign In</Button>}
+          {!username && (
+            <Link href="/sign-in" passHref>
+              <Button as="a" size="medium">
+                Sign In
+              </Button>
+            </Link>
+          )}
         </MediaMatch>
       </S.MenuGroup>
 
       <S.MenuFull isOpen={isOpen} aria-hidden={!isOpen}>
         <CloseIcon aria-label="Close Menu" onClick={() => setIsOpen(false)} />
         <S.MenuNav>
-          <S.MenuLink href="#">Home</S.MenuLink>
-          <S.MenuLink href="#">Explore</S.MenuLink>
+          <Link href="/" passHref>
+            <S.MenuLink>Home</S.MenuLink>
+          </Link>
+          <Link href="/" passHref>
+            <S.MenuLink>Explore</S.MenuLink>
+          </Link>
           {!!username && (
             <>
-              <S.MenuLink href="#">My account</S.MenuLink>
-              <S.MenuLink href="#">Wishlist</S.MenuLink>
+              <Link href="/" passHref>
+                <S.MenuLink>My account</S.MenuLink>
+              </Link>
+              <Link href="/" passHref>
+                <S.MenuLink>Explore</S.MenuLink>
+              </Link>
             </>
           )}
         </S.MenuNav>
@@ -69,7 +88,9 @@ const Menu = ({ username }: MenuProps) => {
               Login now
             </Button>
             <span>or</span>
-            <S.CreateAccount href="#">Sign up</S.CreateAccount>
+            <Link href="/sign-up" passHref>
+              <S.CreateAccount>Sign up</S.CreateAccount>
+            </Link>
           </S.RegisterBox>
         )}
       </S.MenuFull>
