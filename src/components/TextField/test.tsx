@@ -19,14 +19,14 @@ describe('<TextField />', () => {
   });
 
   it('should render the labelFor', () => {
-    renderWithTheme(<TextField label="label" labelFor="labelFor" />);
+    renderWithTheme(<TextField label="label" name="labelFor" />);
 
     expect(screen.getByText(/label/i)).toHaveAttribute('for', 'labelFor');
   });
 
   it('should render the placeholder', () => {
     renderWithTheme(
-      <TextField label="label" labelFor="labelFor" placeholder="any" />
+      <TextField label="label" name="labelFor" placeholder="any" />
     );
 
     expect(screen.getByLabelText(/label/i)).toHaveAttribute(
@@ -39,7 +39,7 @@ describe('<TextField />', () => {
     const onInput = jest.fn();
 
     renderWithTheme(
-      <TextField onInput={onInput} label="label" labelFor="labelFor" />
+      <TextField onInput={onInput} label="label" name="labelFor" />
     );
 
     const input = screen.getByRole('textbox');
@@ -55,9 +55,7 @@ describe('<TextField />', () => {
   });
 
   it('Is accessible by tab', () => {
-    renderWithTheme(
-      <TextField label="TextField" labelFor="TextField" id="TextField" />
-    );
+    renderWithTheme(<TextField label="TextField" name="TextField" />);
 
     const input = screen.getByLabelText('TextField');
     expect(document.body).toHaveFocus();
@@ -70,8 +68,7 @@ describe('<TextField />', () => {
     renderWithTheme(
       <TextField
         label="TextField"
-        labelFor="TextField"
-        id="TextField"
+        name="TextField"
         icon={<Email data-testid="icon" />}
       />
     );
@@ -84,8 +81,7 @@ describe('<TextField />', () => {
     renderWithTheme(
       <TextField
         label="TextField"
-        labelFor="TextField"
-        id="TextField"
+        name="TextField"
         icon={<Email data-testid="icon" />}
       />
     );
@@ -99,8 +95,7 @@ describe('<TextField />', () => {
     renderWithTheme(
       <TextField
         label="TextField"
-        labelFor="TextField"
-        id="TextField"
+        name="TextField"
         icon={<Email data-testid="icon" />}
         iconPosition="right"
       />
@@ -117,8 +112,7 @@ describe('<TextField />', () => {
     renderWithTheme(
       <TextField
         label="TextField"
-        labelFor="TextField"
-        id="TextField"
+        name="TextField"
         icon={<Email data-testid="icon" />}
         disabled
       />
@@ -140,8 +134,7 @@ describe('<TextField />', () => {
     const { container } = renderWithTheme(
       <TextField
         label="TextField"
-        labelFor="TextField"
-        id="TextField"
+        name="TextField"
         icon={<Email data-testid="icon" />}
         error="Digite um e-mail valido!"
       />
