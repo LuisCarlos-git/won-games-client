@@ -11,7 +11,8 @@ export const Default: Story<TextFieldProps> = (args) => <TextField {...args} />;
 
 Default.args = {
   label: 'E-mail',
-  placeholder: 'luis@teste.com.br'
+  placeholder: 'luis@teste.com.br',
+  name: 'email'
 };
 
 export const WithIcon: Story<TextFieldProps> = (args) => (
@@ -27,7 +28,8 @@ export const WithIcon: Story<TextFieldProps> = (args) => (
 WithIcon.args = {
   label: 'E-mail',
   placeholder: 'luis@teste.com.br',
-  icon: <Email />
+  icon: <Email />,
+  name: 'email'
 };
 
 export const WithError: Story<TextFieldProps> = (args) => (
@@ -43,6 +45,7 @@ export const WithError: Story<TextFieldProps> = (args) => (
 WithError.args = {
   label: 'E-mail',
   placeholder: 'luis@teste.com.br',
+  name: 'email',
   icon: <Email />,
   error: 'Digite um e-mail valido!'
 };
