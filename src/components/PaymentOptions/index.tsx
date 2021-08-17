@@ -8,7 +8,7 @@ import { Add, ShoppingCart } from 'styled-icons/material-outlined';
 
 import * as S from './styles';
 
-type PaymentCard = {
+export type PaymentCard = {
   flag: string;
   image: string;
   cardNumber: string;

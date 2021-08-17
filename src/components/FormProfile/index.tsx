@@ -6,7 +6,7 @@ import * as S from './styles';
 
 const FormProfile = () => (
   <React.Fragment>
-    <Heading size="small" lineBottom lineColor="primary">
+    <Heading color="black" size="small" lineBottom lineColor="primary">
       My profile
     </Heading>
     <S.Form>
