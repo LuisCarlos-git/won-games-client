@@ -29,4 +29,14 @@ describe('<CartList />', () => {
 
     expect(screen.getByText(/buy it now/i)).toBeInTheDocument();
   });
+
+  it('should render the empty if not have items in cart list', () => {
+    renderWithTheme(<CartList />);
+
+    expect(screen.getByText('Your cart is empty')).toBeInTheDocument();
+    expect(
+      screen.getByText('Your cart is empty, explore our catalog')
+    ).toBeInTheDocument();
+    expect(screen.queryByText('R$ 300,00')).not.toBeInTheDocument();
+  });
 });

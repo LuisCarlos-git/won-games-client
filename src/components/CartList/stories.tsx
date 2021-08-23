@@ -33,3 +33,9 @@ export const hasButton: Story<CartListProps> = (args) => (
     <CartList {...args} hasButton />
   </div>
 );
+
+export const NoItems: Story<CartListProps> = (args) => (
+  <div style={{ maxWidth: 800 }}>
+    <CartList />
+  </div>
+);
