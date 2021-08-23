@@ -1,3 +1,4 @@
+import { gql, useQuery } from '@apollo/client';
 import Home from 'templates/Home';
 import { HomeTemplateProps } from 'templates/Home';
 
@@ -6,6 +7,14 @@ import sliderMock from 'components/GamerCardSlider/mock';
 import HighlightMock from 'components/Highlight/mock';
 
 export default function Index(props: HomeTemplateProps) {
+  const { data, loading, error } = useQuery(gql`
+    query GetGames {
+      games {
+        name
+      }
+    }
+  `);
+
   return <Home {...props} />;
 }
 
