@@ -23,4 +23,10 @@ describe('<CartList />', () => {
     expect(screen.getAllByTestId('card mock')).toHaveLength(2);
     expect(screen.getByText('R$ 300,00')).toBeInTheDocument();
   });
+
+  it('should render the button', () => {
+    renderWithTheme(<CartList {...props} hasButton />);
+
+    expect(screen.getByText(/buy it now/i)).toBeInTheDocument();
+  });
 });
