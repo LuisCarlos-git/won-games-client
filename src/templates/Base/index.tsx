@@ -11,7 +11,7 @@ type BaseProps = {
 const Base = ({ children }: BaseProps) => (
   <S.Wrapper>
     <Container>
-      <Menu />
+      <Menu username="Luis Carlos" />
     </Container>
     <S.Content>{children}</S.Content>
     <S.SectionFooter>

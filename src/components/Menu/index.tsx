@@ -10,6 +10,9 @@ import * as S from './styles';
 import Logo from '../Logo';
 import Button from 'components/Button';
 import MediaMatch from 'components/MediaMatch';
+import CartDropdown from 'components/CartDropdown';
+import CartIcon from 'components/CartIcon';
+import UserDropdown from 'components/UserDropdown';
 
 export type MenuProps = {
   username?: string;
@@ -46,17 +49,28 @@ const Menu = ({ username }: MenuProps) => {
           <SearchIcon aria-label="Search" />
         </S.IconWrapper>
 
-        <S.IconWrapper>
-          <AddShoppingCartIcon aria-label="Open Cart" />
+        <S.IconWrapper aria-label="open cart">
+          <MediaMatch greaterThan="medium">
+            <CartDropdown cartItems={[]} />
+          </MediaMatch>
+          <MediaMatch lessThan="medium">
+            <Link href="/cart">
+              <a>
+                <CartIcon />
+              </a>
+            </Link>
+          </MediaMatch>
         </S.IconWrapper>
 
         <MediaMatch greaterThan="medium">
-          {!username && (
+          {!username ? (
             <Link href="/sign-in" passHref>
               <Button as="a" size="medium">
                 Sign In
               </Button>
             </Link>
+          ) : (
+            <UserDropdown username={username} />
           )}
         </MediaMatch>
       </S.MenuGroup>
@@ -72,10 +86,10 @@ const Menu = ({ username }: MenuProps) => {
           </Link>
           {!!username && (
             <>
-              <Link href="/" passHref>
+              <Link href="/profile/me" passHref>
                 <S.MenuLink>My account</S.MenuLink>
               </Link>
-              <Link href="/" passHref>
+              <Link href="/wishlist" passHref>
                 <S.MenuLink>Wishlist</S.MenuLink>
               </Link>
             </>

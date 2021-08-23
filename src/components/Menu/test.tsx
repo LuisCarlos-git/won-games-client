@@ -51,6 +51,5 @@ describe('<Menu />', () => {
     expect(screen.queryByText(/login now/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/sign up/i)).not.toBeInTheDocument();
     expect(screen.getByText(/my account/i)).toBeInTheDocument();
-    expect(screen.getByText(/wishlist/i)).toBeInTheDocument();
   });
 });

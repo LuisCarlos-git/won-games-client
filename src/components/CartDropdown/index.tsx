@@ -7,10 +7,10 @@ import * as S from './styles';
 
 export type CartDropdownProps = {
   cartItems: GameItemProps[];
-  total: string;
+  total?: string;
 };
 
-const CartDropdown = ({ cartItems, total }: CartDropdownProps) => (
+const CartDropdown = ({ cartItems, total = '' }: CartDropdownProps) => (
   <S.Wrapper>
     <Dropdown title={<CartIcon />}>
       <CartList total={total} items={cartItems} hasButton />
