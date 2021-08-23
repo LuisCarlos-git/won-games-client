@@ -1,10 +1,42 @@
 import { screen } from '@testing-library/react';
 import { renderWithTheme } from 'utils/tests/helper';
+import gamesMock from 'components/GamerCardSlider/mock';
+import filterItemsMock from 'components/ExploreSidebar/mock';
 
-import Explore from '.';
+import Games from '.';
 
-describe('<Explore />', () => {
-  it('should render the heading', () => {
-    renderWithTheme(<Explore  />)
+jest.mock('templates/Base', () => ({
+  __esModule: true,
+  default: function Mock({ children }: { children: React.ReactNode }) {
+    return <div data-testid="Mock Base">{children}</div>;
+  }
+}));
+
+jest.mock('components/ExploreSidebar', () => ({
+  __esModule: true,
+  default: function Mock({ children }: { children: React.ReactNode }) {
+    return <div data-testid="Mock ExploreSidebar">{children}</div>;
+  }
+}));
+
+jest.mock('components/GameCard', () => ({
+  __esModule: true,
+  default: function Mock() {
+    return <div data-testid="Mock GameCard" />;
+  }
+}));
+
+describe('<Games />', () => {
+  it('should render sections', () => {
+    renderWithTheme(
+      <Games exploreFields={filterItemsMock} games={[gamesMock[0]]} />
+    );
+
+    expect(screen.getByTestId('Mock ExploreSidebar')).toBeInTheDocument();
+    expect(screen.getByTestId('Mock GameCard')).toBeInTheDocument();
+
+    expect(
+      screen.getByRole('button', { name: /show more/i })
+    ).toBeInTheDocument();
   });
 });
