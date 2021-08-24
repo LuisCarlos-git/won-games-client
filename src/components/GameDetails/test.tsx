@@ -8,7 +8,8 @@ const props: GameDetailsProps = {
   platforms: ['windows', 'linux', 'mac'],
   releaseDate: '2020-11-21T23:00:00',
   rating: 'BR0',
-  genres: ['Role-playing', 'Action', 'Adventure']
+  genres: ['Role-playing', 'Action', 'Adventure'],
+  publisher: 'CDPROJECTRED'
 };
 
 describe('<GameDetails />', () => {
