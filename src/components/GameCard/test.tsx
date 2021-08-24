@@ -9,7 +9,8 @@ const props = {
   developer: 'Rockstar games',
   img:
     'https://steamcdn-a.akamaihd.net/steam/apps/1239430/capsule_616x353.jpg?t=1588101432',
-  price: 'R$ 235,00'
+  price: 235,
+  slug: '/game/population-zero'
 };
 
 describe('<GameCard />', () => {
@@ -30,6 +31,10 @@ describe('<GameCard />', () => {
 
     expect(screen.getByLabelText(/price/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/favoritar/i)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: props.title })).toHaveAttribute(
+      'href',
+      `/game/${props.slug}`
+    );
   });
 
   it('should render price in label', () => {
@@ -49,15 +54,15 @@ describe('<GameCard />', () => {
   });
 
   it('should render price in label', () => {
-    renderWithTheme(<GameCard {...props} promotionalPrice="R$ 15,00" />);
+    renderWithTheme(<GameCard {...props} promotionalPrice={150} />);
 
-    const price = screen.getByText(props.price);
+    const price = screen.getByText(/\$235\.00/i);
 
     expect(price).toHaveStyle({
       textDecoration: 'line-through'
     });
 
-    expect(screen.getByText('R$ 15,00')).not.toHaveStyle({
+    expect(screen.getByText('$150.00')).not.toHaveStyle({
       textDecoration: 'line-through'
     });
   });

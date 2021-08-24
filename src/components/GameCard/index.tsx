@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import Button from 'components/Button';
 import {
   AddShoppingCart,
@@ -8,13 +10,15 @@ import {
 import Ribbon, { RibbonColors, RibbonSizes } from 'components/Ribbon';
 
 import * as S from './styles';
+import { formatPrice } from 'utils/formatPrice';
 
 export type GameCardProps = {
+  slug: string;
   title: string;
-  price: string;
+  price: number;
   developer: string;
   img: string;
-  promotionalPrice?: string;
+  promotionalPrice?: number;
   favorite?: boolean;
   onFav?: () => void;
   ribbon?: string;
@@ -32,7 +36,8 @@ const GameCard = ({
   onFav,
   ribbon,
   ribbonColor,
-  ribbonSize
+  ribbonSize,
+  slug
 }: GameCardProps) => (
   <S.Wrapper>
     {!!ribbon && (
@@ -40,14 +45,18 @@ const GameCard = ({
         {ribbon}
       </Ribbon>
     )}
-    <S.ImageBox>
-      <img src={img} alt={title} />
-    </S.ImageBox>
+    <Link href={`game/${slug}`} passHref>
+      <S.ImageBox>
+        <img src={img} alt={title} />
+      </S.ImageBox>
+    </Link>
     <S.Content>
-      <S.Info>
-        <S.Title>{title}</S.Title>
-        <S.Developer>{developer}</S.Developer>
-      </S.Info>
+      <Link href={`/game/${slug}`} passHref>
+        <S.Info>
+          <S.Title>{title}</S.Title>
+          <S.Developer>{developer}</S.Developer>
+        </S.Info>
+      </Link>
       <S.FavButton role="button" onClick={onFav}>
         {favorite ? (
           <Favorite aria-label="remove from favorite" />
@@ -56,8 +65,22 @@ const GameCard = ({
         )}
       </S.FavButton>
       <S.BuyBox>
-        {!!promotionalPrice && <S.Price isPromotional>{price}</S.Price>}
-        <S.Price aria-label="price">{promotionalPrice || price}</S.Price>
+        {!!promotionalPrice && (
+          <S.Price isPromotional>
+            {formatPrice({
+              value: price,
+              language: 'en',
+              currency: 'USD'
+            })}
+          </S.Price>
+        )}
+        <S.Price aria-label="price">
+          {formatPrice({
+            language: 'en',
+            value: promotionalPrice || price,
+            currency: 'USD'
+          })}
+        </S.Price>
         <Button
           icon={<AddShoppingCart />}
           size="small"

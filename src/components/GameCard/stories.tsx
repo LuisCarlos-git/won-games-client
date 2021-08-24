@@ -5,6 +5,7 @@ export default {
   title: 'GameCard',
   component: GameCard,
   args: {
+    slug: 'population-zero',
     title: 'Population zero',
     developer: 'Rockstar games',
     img:
